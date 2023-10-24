@@ -1,9 +1,10 @@
 package com.example.demo;
 
+import com.example.demo.entity.Food;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
 
 public class FoodItemProcessor implements ItemProcessor<Food,Food> {
     private static final Logger log = (Logger) LoggerFactory.getLogger(FoodItemProcessor.class);
