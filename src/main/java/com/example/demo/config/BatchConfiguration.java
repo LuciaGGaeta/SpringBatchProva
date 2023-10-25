@@ -1,5 +1,7 @@
-package com.example.demo;
+package com.example.demo.config;
 
+import com.example.demo.utils.FoodItemProcessor;
+import com.example.demo.utils.JobCompletionNotificationListener;
 import com.example.demo.entity.Food;
 import jakarta.persistence.EntityManagerFactory;
 
@@ -9,10 +11,8 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.builder.JobBuilder;
-import org.springframework.batch.core.launch.NoSuchJobException;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
@@ -37,11 +37,10 @@ public class BatchConfiguration {
 
     @Bean
     @StepScope
-
     public JpaCursorItemReader<Food> jpaCursorItemReader(EntityManagerFactory entityManagerFactory) {
         JpaCursorItemReader<Food> reader = new JpaCursorItemReader<>();
         reader.setEntityManagerFactory(entityManagerFactory);
-        reader.setQueryString("SELECT t FROM Food t"); // Note the entity name should match
+        reader.setQueryString("SELECT t FROM Food t");
         reader.setSaveState(true);
         return reader;
     }
@@ -88,10 +87,6 @@ public class BatchConfiguration {
 
         return job;
     }
-
-
-
-
 
     @Bean
     public Step step1(JobRepository jobRepository, DataSourceTransactionManager transactionManager,

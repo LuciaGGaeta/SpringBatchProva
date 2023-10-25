@@ -1,8 +1,7 @@
-package com.example.demo;
+package com.example.demo.utils;
 
 import com.example.demo.entity.Food;
 import org.slf4j.LoggerFactory;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.item.ItemProcessor;
 
 import org.slf4j.Logger;
